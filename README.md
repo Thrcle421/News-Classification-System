@@ -13,7 +13,6 @@ Building on this exploration, I developed a **Django-based web application** for
 
 ### Data Management
 - Separate management for trained and untrained data
-- Batch selection and training functionality
 - High confidence data filtering (>90%)
 - Advanced sorting and filtering options
 - Status tracking for data verification
@@ -40,20 +39,6 @@ Building on this exploration, I developed a **Django-based web application** for
 
 - **Backend**: Django
 - **Frontend**: Bootstrap 5, Chart.js
-- **Database**: SQLite/PostgreSQL
+- **Database**: MySQL
 - **ML Model**: LoRA fine-tuning
-- **Authentication**: Django built-in auth
 
-## Key Components
-
-### Models
-- NewsCategory: News category management
-- TrainedData: Verified and trained news data
-- UntrainedData: Pending verification news data
-- UserProfile: Extended user information
-
-### Views
-- Prediction interface
-- Data management dashboard
-- Training control panel
-- User management
