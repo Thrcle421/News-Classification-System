@@ -4,6 +4,8 @@ This project is an extension of the final project from UC San Diego's CSE 256 co
 
 Building on this exploration, I developed a **Django-based web application** for news text classification. The application utilizes the LoRA model fine-tuned on the AG’s News Dataset to predict the category of news articles entered by users. This implementation bridges theoretical research with a practical application for real-world use cases.
 
+I also tried using cursor effects to enhance the frontend design.
+
 ## Features
 
 ### News Classification
