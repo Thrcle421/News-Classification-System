@@ -1,6 +1,8 @@
 # News Classification System
 
-A Django-based web application for news text classification with fine-tuning capabilities.
+This project is an extension of the final project from UC San Diego's CSE 256 course. In the final project, I compared the performance and efficiency of LoRA-based fine-tuning with traditional full-parameter fine-tuning for text classification tasks. Using the IMDB Dataset and AG’s News Dataset, I explored the capabilities of LoRA and further experimented with LoRA+ in this context. The code for the project is packaged under ucsd-cse256, and the corresponding report is titled "*Fine-Tuning for Text Classification using Low-Rank Adaptation (LoRA)*".
+
+Building on this exploration, I developed a Django-based web application for news text classification. The application utilizes the LoRA model fine-tuned on the AG’s News Dataset to predict the category of news articles entered by users. This implementation bridges theoretical research with a practical application for real-world use cases.
 
 ## Features
 
