@@ -1,0 +1,133 @@
+{% extends 'news_app/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center mb-0">User Profile</h2>
+                </div>
+                <div class="card-body">
+                    <!-- User Info Section -->
+                    <div class="mb-4">
+                        <div class="text-center mb-4">
+                            <div class="avatar-circle mb-3">
+                                <span class="avatar-text">{{ user.username|make_list|first|upper }}</span>
+                            </div>
+                            <h4>{{ user.username }}</h4>
+                        </div>
+                    </div>
+
+                    <!-- User Details Section -->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="info-card bg-light p-3 rounded">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-envelope me-2 text-primary"></i>
+                                    <strong>Email</strong>
+                                </div>
+                                <div>{{ user.email }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-card bg-light p-3 rounded">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-alt me-2 text-primary"></i>
+                                    <strong>Join Date</strong>
+                                </div>
+                                <div>{{ user.date_joined|date:"F d, Y" }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-card bg-light p-3 rounded">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-chart-bar me-2 text-primary"></i>
+                                    <strong>Predictions Made</strong>
+                                </div>
+                                <div>{{ prediction_count }}</div>
+                            </div>
+                        </div>
+                        {% if last_prediction %}
+                        <div class="col-md-6">
+                            <div class="info-card bg-light p-3 rounded">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-clock me-2 text-primary"></i>
+                                    <strong>Last Prediction</strong>
+                                </div>
+                                <div>{{ last_prediction|date:"F d, Y H:i" }}</div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Actions Section -->
+                    <div class="text-center mt-4">
+                        <a href="{% url 'password_reset' %}" class="btn btn-primary">
+                            <i class="fas fa-key me-2"></i>Change Password
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+    .avatar-circle {
+        width: 100px;
+        height: 100px;
+        background-color: #007bff;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .avatar-text {
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .info-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: 1px solid rgba(0,0,0,0.125);
+    }
+
+    .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        border-bottom: none;
+        padding: 1.5rem;
+    }
+
+    .btn-primary {
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+    }
+</style>
+
+<!-- Add Font Awesome to the base template if not already included -->
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+{% endblock %} 

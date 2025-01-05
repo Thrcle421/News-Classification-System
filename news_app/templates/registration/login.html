@@ -1,0 +1,115 @@
+{% extends 'news_app/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h2 class="mb-0">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" class="login-form">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-sign-in-alt me-2"></i>Login
+                            </button>
+                        </div>
+                        <div class="text-center mt-4">
+                            <p class="mb-2">
+                                <a href="{% url 'password_reset' %}" class="text-decoration-none">
+                                    <i class="fas fa-key me-1"></i>Forgot your password?
+                                </a>
+                            </p>
+                            <p class="mb-0">
+                                Don't have an account? 
+                                <a href="{% url 'register' %}" class="text-primary text-decoration-none">
+                                    <i class="fas fa-user-plus me-1"></i>Register here
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm text-center h-100">
+                        <div class="card-body">
+                            <i class="fas fa-robot text-primary mb-3" style="font-size: 2rem;"></i>
+                            <h5>AI Powered</h5>
+                            <p class="text-muted mb-0">Advanced news classification</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm text-center h-100">
+                        <div class="card-body">
+                            <i class="fas fa-bolt text-warning mb-3" style="font-size: 2rem;"></i>
+                            <h5>Fast Results</h5>
+                            <p class="text-muted mb-0">Instant predictions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm text-center h-100">
+                        <div class="card-body">
+                            <i class="fas fa-shield-alt text-success mb-3" style="font-size: 2rem;"></i>
+                            <h5>Secure</h5>
+                            <p class="text-muted mb-0">Protected data & privacy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .login-form .form-control {
+        border-radius: 10px;
+        padding: 12px;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s;
+    }
+
+    .login-form .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+
+    .card {
+        border-radius: 15px;
+        transition: transform 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .btn {
+        border-radius: 10px;
+        padding: 12px;
+        transition: all 0.3s;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    a {
+        transition: all 0.3s;
+    }
+
+    a:hover {
+        color: #0056b3;
+    }
+</style>
+{% endblock %} 

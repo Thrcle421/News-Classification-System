@@ -1,0 +1,22 @@
+{% extends 'news_app/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center mb-0">Logged Out</h2>
+            </div>
+            <div class="card-body">
+                <p class="text-center mb-4">
+                    You have been successfully logged out.
+                </p>
+                <div class="text-center">
+                    <a href="{% url 'login' %}" class="btn btn-primary">Login Again</a>
+                    <a href="{% url 'home' %}" class="btn btn-outline-primary ms-2">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

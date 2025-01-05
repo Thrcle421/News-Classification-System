@@ -1,0 +1,118 @@
+{% extends 'news_app/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card border-0 shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="text-center mb-0">
+                <i class="fas fa-users-cog me-2"></i>Administrator Management
+            </h2>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="px-4">
+                                <i class="fas fa-user me-2"></i>Username
+                            </th>
+                            <th>
+                                <i class="fas fa-envelope me-2"></i>Email
+                            </th>
+                            <th>
+                                <i class="fas fa-calendar-alt me-2"></i>Join Date
+                            </th>
+                            <th>
+                                <i class="fas fa-user-shield me-2"></i>Status
+                            </th>
+                            <th class="text-center">
+                                <i class="fas fa-cogs me-2"></i>Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td class="px-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-circle-sm me-2">
+                                        <span class="avatar-text-sm">{{ user.username|make_list|first|upper }}</span>
+                                    </div>
+                                    {{ user.username }}
+                                </div>
+                            </td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.date_joined|date:"Y-m-d H:i" }}</td>
+                            <td>
+                                {% if user.is_staff %}
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-check-circle me-1"></i>Administrator
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-secondary">
+                                        <i class="fas fa-user me-1"></i>Regular User
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                <form method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                                    {% if user.is_staff %}
+                                        <button type="submit" name="action" value="remove_admin" 
+                                                class="btn btn-sm btn-danger">
+                                            <i class="fas fa-user-minus me-1"></i>Remove Admin
+                                        </button>
+                                    {% else %}
+                                        <button type="submit" name="action" value="make_admin" 
+                                                class="btn btn-sm btn-success">
+                                            <i class="fas fa-user-plus me-1"></i>Make Admin
+                                        </button>
+                                    {% endif %}
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .avatar-circle-sm {
+        width: 32px;
+        height: 32px;
+        background-color: #007bff;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .avatar-text-sm {
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .table th {
+        font-weight: 600;
+    }
+
+    .btn {
+        border-radius: 20px;
+        transition: all 0.3s;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .badge {
+        padding: 0.5em 0.8em;
+    }
+</style>
+{% endblock %} 

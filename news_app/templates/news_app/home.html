@@ -1,0 +1,188 @@
+{% extends 'news_app/base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 fw-bold mb-4 text-gradient">
+                <i class="fas fa-robot me-2"></i>Welcome to News Classification System
+            </h1>
+            <p class="lead mb-4 text-muted">
+                Experience the power of AI in news classification. Our system helps you quickly identify news categories using advanced machine learning algorithms and the AGNews dataset.
+            </p>
+            
+            {% if user.is_authenticated %}
+                <div class="mb-4">
+                    <a href="{% url 'predict_news' %}" class="btn btn-primary btn-lg px-5 py-3 pulse-button">
+                        <i class="fas fa-magic me-2"></i>Start Prediction
+                    </a>
+                </div>
+                {% if user.is_staff %}
+                    <div class="mt-4">
+                        <a href="{% url 'dashboard' %}" class="btn btn-outline-primary btn-lg me-3 hover-float">
+                            <i class="fas fa-chart-line me-2"></i>View Dashboard
+                        </a>
+                        <a href="{% url 'manage_data' %}" class="btn btn-outline-secondary btn-lg hover-float">
+                            <i class="fas fa-database me-2"></i>Manage Data
+                        </a>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="mb-4">
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-lg me-3 hover-float">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                    </a>
+                    <a href="{% url 'register' %}" class="btn btn-outline-primary btn-lg hover-float">
+                        <i class="fas fa-user-plus me-2"></i>Register
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="row mt-5 g-4">
+    <div class="col-md-4">
+        <div class="card feature-card h-100">
+            <div class="card-body text-center p-4">
+                <div class="icon-circle bg-primary text-white mb-4">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h5 class="card-title fw-bold mb-3">Smart Classification</h5>
+                <p class="card-text text-muted">
+                    Leverage advanced AI algorithms to accurately classify news content into distinct categories with high precision.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card feature-card h-100">
+            <div class="card-body text-center p-4">
+                <div class="icon-circle bg-success text-white mb-4">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h5 class="card-title fw-bold mb-3">Real-time Processing</h5>
+                <p class="card-text text-muted">
+                    Experience lightning-fast text processing with instant classification results and feedback.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card feature-card h-100">
+            <div class="card-body text-center p-4">
+                <div class="icon-circle bg-info text-white mb-4">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h5 class="card-title fw-bold mb-3">Data Management</h5>
+                <p class="card-text text-muted">
+                    Access comprehensive data management tools with powerful visualization capabilities.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Section -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card border-0 bg-gradient p-4">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <i class="fas fa-newspaper text-primary mb-3"></i>
+                        <h3 class="fw-bold">4 Categories</h3>
+                        <p class="text-muted">Supported News Types</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <i class="fas fa-tachometer-alt text-success mb-3"></i>
+                        <h3 class="fw-bold">Real-time</h3>
+                        <p class="text-muted">Processing Speed</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <i class="fas fa-check-circle text-info mb-3"></i>
+                        <h3 class="fw-bold">95%+</h3>
+                        <p class="text-muted">Classification Accuracy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hero-section {
+        padding: 4rem 0;
+    }
+
+    .text-gradient {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .icon-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+    }
+
+    .feature-card {
+        border: none;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .pulse-button {
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(0,123,255,0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(0,123,255,0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(0,123,255,0);
+        }
+    }
+
+    .hover-float {
+        transition: all 0.3s ease;
+    }
+
+    .hover-float:hover {
+        transform: translateY(-5px);
+    }
+
+    .bg-gradient {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .stat-item i {
+        font-size: 2.5rem;
+    }
+
+    .stat-item h3 {
+        margin: 1rem 0;
+        font-size: 2rem;
+    }
+</style>
+{% endblock %} 

@@ -1,0 +1,204 @@
+{% extends 'news_app/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Prediction Form Card -->
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-primary text-white py-3">
+                    <h2 class="text-center mb-0">
+                        <i class="fas fa-robot me-2"></i>News Classification
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" id="predictionForm">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label for="title" class="form-label">
+                                <i class="fas fa-heading me-2"></i>News Title (Optional)
+                            </label>
+                            <input type="text" class="form-control form-control-lg" 
+                                   id="title" name="title" 
+                                   placeholder="Enter news title...">
+                        </div>
+                        <div class="mb-4">
+                            <label for="content" class="form-label">
+                                <i class="fas fa-newspaper me-2"></i>News Content
+                            </label>
+                            <textarea class="form-control form-control-lg" 
+                                      id="content" name="content" 
+                                      rows="10" required 
+                                      placeholder="Paste your news content here..."></textarea>
+                            <div class="form-text text-end">
+                                <span id="charCount">0</span> characters
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                <i class="fas fa-magic me-2"></i>Start Prediction
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm hover-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-circle bg-primary text-white mb-3">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h5 class="card-title">Best Practices</h5>
+                            <p class="card-text text-muted">
+                                Use complete articles for better accuracy in classification
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm hover-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-circle bg-success text-white mb-3">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h5 class="card-title">Accuracy</h5>
+                            <p class="card-text text-muted">
+                                Longer content typically yields more accurate results
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm hover-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-circle bg-info text-white mb-3">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <h5 class="card-title">History</h5>
+                            <p class="card-text text-muted">
+                                All predictions are saved to your profile
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Info -->
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-4">
+                        <i class="fas fa-tags me-2"></i>Available Categories
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="category-item d-flex align-items-center p-3 rounded bg-light">
+                                <i class="fas fa-globe text-primary me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">World</h6>
+                                    <small class="text-muted">International news and events</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="category-item d-flex align-items-center p-3 rounded bg-light">
+                                <i class="fas fa-chart-bar text-success me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">Business</h6>
+                                    <small class="text-muted">Economics and commerce</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="category-item d-flex align-items-center p-3 rounded bg-light">
+                                <i class="fas fa-microchip text-info me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">Technology</h6>
+                                    <small class="text-muted">Tech news and innovations</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="category-item d-flex align-items-center p-3 rounded bg-light">
+                                <i class="fas fa-running text-warning me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">Sports</h6>
+                                    <small class="text-muted">Sports and athletics</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control {
+        border: 2px solid #e9ecef;
+        transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+    
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+    
+    .hover-card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .hover-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,.1) !important;
+    }
+    
+    .category-item {
+        transition: all 0.3s;
+    }
+    
+    .category-item:hover {
+        background-color: #f8f9fa !important;
+        transform: translateX(5px);
+    }
+    
+    .btn-primary {
+        padding: 12px 30px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,123,255,.3);
+    }
+</style>
+
+<script>
+document.getElementById('content').addEventListener('input', function() {
+    document.getElementById('charCount').textContent = this.value.length;
+});
+
+document.getElementById('predictionForm').addEventListener('submit', function(e) {
+    const content = document.getElementById('content').value.trim();
+    if (!content) {
+        e.preventDefault();
+        alert('Please enter some news content');
+    }
+});
+</script>
+{% endblock %} 
