@@ -19,6 +19,7 @@ I also tried using cursor effects to enhance the frontend design.
 - High confidence data filtering (>90%)
 - Advanced sorting and filtering options
 - Status tracking for data verification
+![Image text](https://github.com/Thrcle421/News-Classification-System/blob/master/img_file/manage.png)
 
 ### User System
 - User authentication and authorization
